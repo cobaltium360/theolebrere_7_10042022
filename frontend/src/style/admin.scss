@@ -1,0 +1,158 @@
+.container_listeuser_admin{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    width: 70%;
+    margin: auto;
+    background-color: #eaeaea;
+    box-shadow: rgb(0 0 0 / 56%) 0px 22px 70px 4px;
+}
+
+.liste_user_admin{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline 2px black;
+}
+
+.ul_admin{
+    border:none;
+    margin: 2rem;
+    padding: 2rem;
+    overflow-wrap: anywhere;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: rgb(0 0 0 / 7%) 0px 1px 1px, rgb(0 0 0 / 7%) 0px 2px 2px, rgb(0 0 0 / 7%) 0px 4px 4px, rgb(0 0 0 / 7%) 0px 8px 8px, rgb(0 0 0 / 7%) 0px 16px 16px;
+}
+
+.ul_admin_modo_admin{
+    border:none;
+    margin: 2rem;
+    padding: 2rem;
+    overflow-wrap: anywhere;
+    background-color: rgba(97, 218, 251, 0.2352941176);
+    border-radius: 20px;
+    box-shadow: rgb(0 0 0 / 7%) 0px 1px 1px, rgb(0 0 0 / 7%) 0px 2px 2px, rgb(0 0 0 / 7%) 0px 4px 4px, rgb(0 0 0 / 7%) 0px 8px 8px, rgb(0 0 0 / 7%) 0px 16px 16px;
+
+}
+
+.fond_bleu_admin{
+    background-color: #02448b;
+    box-shadow: inset 0px 18px 20px -15px #363636;
+    height: 100%;
+    width: 100%;
+    padding-top: 25px ;
+    padding-bottom: 20px;
+}
+
+.container_admin_user{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container_info{
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.view_profile_admin{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom:0 ;
+    text-decoration: underline #ba4e55 5px;
+}
+
+
+.container_option_admin{
+    display: flex;
+    gap: 6rem;
+}
+
+.options_admin{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.admin_btn_restore{
+    background-color: lightgreen;
+    font-size: 15px;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.admin_btn_delete{
+    background-color: red;
+    font-size: 15px;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.admin_btn_softdelete{
+    background-color: orange;
+    font-size: 15px;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.admin_ac{
+    text-decoration: underline 3px lightgreen;
+    font-weight: bold;
+}
+
+.admin_desac{
+    text-decoration: underline 3px red;
+    font-weight: bold;
+}
+
+.etat_account_admin{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .container_admin_user{
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    .container_info{
+        flex-direction: column;
+        gap: 0px;
+
+        .container_2_admin{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            p{
+                margin: 10px;
+            }
+        }
+    }
+
+    .container_option_admin{
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .container_listeuser_admin{
+        transition: .3s;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .container_listeuser_admin{
+        transition: .3s;
+        width: 85%;
+    }
+}

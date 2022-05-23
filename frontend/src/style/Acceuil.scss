@@ -1,0 +1,12 @@
+.fond_bleu_acceuil{
+    display: flex;
+    justify-content: center;
+    background-color: #02448b;
+    -webkit-box-shadow: inset 0px 18px 20px -15px #363636; 
+    box-shadow: inset 0px 18px 20px -15px #363636;
+    position: fixed; 
+    left: 0; 
+    height: 100%;
+    width: 100%;
+    align-items: flex-start;
+}

@@ -1,0 +1,28 @@
+.container_nav1{
+    display:flex;
+    justify-content: space-around;
+}
+
+.img_nav1{
+    img{
+        width: 60%;
+        min-width: 210px;
+    }
+}
+.container_log_reg{
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+
+    .inactive{
+        text-decoration: none;
+        color: black;
+        font-size: 1.5rem;
+    }
+    .active{
+        text-decoration: #ba4e55 underline;
+        color: black;
+        font-size: 1.5rem;
+    }
+}
+

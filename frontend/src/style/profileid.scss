@@ -1,0 +1,102 @@
+.container_image_displayprofile{
+    border-radius:50% ;
+    overflow: hidden;
+    height: 200px;
+    width: 200px;
+}
+
+.image_displayprofile{
+    object-fit: cover;
+    height: 200px;
+    width: 200px;
+}
+
+.container_container_displayuser_img_pseudo_description{
+    display: flex;
+    justify-content: center;
+    
+}
+.container_displayuser_img_pseudo_description{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 56%) 0px 22px 70px 4px;
+    border-radius: 1.2rem;
+    margin-top: 25px;
+    padding: 25px;
+    width: 40%;
+}
+
+
+.pseudo_author_post_profileid{
+    margin-bottom: 0;
+}
+.ul_profileid{
+    border: 3px #fb6161 solid;
+    margin: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 50%;
+    
+}
+
+.container_replace_img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    background-color: rgba(97, 218, 251, 0.2352941176);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lettre_replace_h2{
+    color: #ba4e55;
+    font-size: 100px;
+}
+
+.p_profileid_post_comment{
+    overflow-wrap: anywhere;
+}
+
+.fond_bleu_profileid{
+    background-color: #02448b;
+    position: fixed;
+    left: 0; 
+    height: 100%;
+    width: 100%;
+}
+
+.user_introuvable_profileid{
+    font-size: 35px;
+    color: white;
+}
+
+.p_profileid_aucun_post{
+    margin-top: 0;
+}
+
+.container_post_profileid{
+    margin: 50px auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    background-color: #eaeaea;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+    
+}
+
+.postedeuserprofileid{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline 2px black;
+}
+
+.p_description_profileid{
+    margin-top: 0;
+}

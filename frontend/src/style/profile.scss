@@ -1,0 +1,217 @@
+.image_profile{
+    width: 100%;
+    object-fit: cover;  
+    height: 200px;
+    width: 200px; 
+}
+
+.container_img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.logo_upload_profile{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.label_upload_profile{
+    display: flex;
+    justify-content: center;
+}
+
+.container_infoprofile_border{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    padding: 25px;
+    margin-top: 25px;
+    border-radius: 1.2rem;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.container_infoprofile{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 0px;
+}
+
+.input_disable{
+    cursor: not-allowed;
+    font-size: 20px;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
+.input_enable_profile{
+    font-size: 20px;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
+.trixe_profile{
+    display: flex;
+    gap: 3rem;
+}
+
+.div_dangereuse{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem ;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.btn_update{
+    padding: 13px 35px;
+    background: #ba4e55 ;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    border-radius: 30px ;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.commentaire_post_profile{
+    overflow-wrap: anywhere;
+}
+
+.profile_option_ducompte{
+    margin-top: 0;
+}
+
+.container_div_dangereuse{
+    margin-left:30px ;
+    grid-column: 1;
+    height: 40%;
+    min-height: 280px;
+    background-color: white;
+    margin-top: 25px;
+    border-radius: 30px;
+}
+
+.btn_dangereux_desac{
+    padding: 1rem;
+    background: orange;
+    border: none;
+    font-size : 20px;
+    border-radius: 30px ;
+    cursor: pointer;
+}
+
+.container_post_profile{
+    margin: 50px auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    background-color: #eaeaea;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+
+}
+
+.container_post_pseudo_poubelle_profile{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn_dangereux_reactiver{
+    padding: 1rem;
+    background: green;
+    color: white;
+    border: none;
+    font-size : 20px;
+    border-radius: 30px ;
+    cursor: pointer;
+}
+
+.boutton_div_danger{
+    display: flex;
+    justify-content: center;
+}
+
+.btn_dangereux_suppr{
+    padding: 1rem;
+    background: red;
+    border: none;
+    font-size: 20px;
+    border-radius: 30px ;
+    cursor: pointer;
+}
+
+.icone_modif{
+    margin-left: 15px;
+    margin-bottom: 0;
+    font-size: 20px;
+   cursor: pointer;
+}
+
+
+@media screen and (max-width: 1270px) {
+
+    .container_div_dangereuse{
+        height: 38%;
+    }
+    .trixe_profile{
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+   .container_infoprofile{
+       display: flex;
+       flex-direction: column-reverse;
+   }
+   .container_infoprofile_border{
+       width: 70%;
+       margin: auto;
+       margin-top: 25px;
+   }
+
+   .container_div_dangereuse{
+    height: auto;
+    width: 70%;
+    margin: auto;
+    margin-top: 25px ;
+    }
+
+    .input_disable{
+        font-size: 17px;
+    }
+
+    .input_enable_profile{
+        font-size: 17px;
+    }
+
+}
+
+
+@media screen and (max-width: 600px) {
+    .container_post_profile{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .container_post_profile{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .container_post_profile{
+        width: 100%;
+    }
+}

@@ -1,0 +1,20 @@
+@import url(./Nav1.scss);
+@import url(./forum.scss);
+@import url(./profile.scss);
+@import url(./profileid.scss);
+@import url(./admin.scss);
+@import url(./login.scss);
+@import url(./Register.scss);
+@import url(./Acceuil.scss);
+@import url(./Nav2.scss);
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+body{
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    
+}
+
+p{
+    font-size: 20px;
+}
