@@ -12,7 +12,15 @@ const adminRoutes = require('./routes/admin');
 const likeRoutes = require('./routes/like');
 const cors = require('cors');
 const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, 
+	max: 200, 
+	standardHeaders: true, 
+	legacyHeaders: false, 
+})
+app.use(limiter)
 app.use(express.json());
 
 app.use(cors());
