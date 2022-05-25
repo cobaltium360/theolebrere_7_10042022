@@ -19,10 +19,12 @@ exports.modifProfile = (req, res, next) => {
             res.status(400).json({message: "l'utilisateur n'existe pas"})
         }else{
             if(req.file){
+                console.log(req.body.profileinfo)
                 if(req.body.profileinfo){
                     const post = postModel.findOne({where :{userId: userId}});
                     if(account.id == userId){
                         const info = JSON.parse(req.body.profileinfo);
+                        
                         if(account.imageUrl == null){
                             
                             if(post){
@@ -95,6 +97,7 @@ exports.modifProfile = (req, res, next) => {
                 }
             }else{
                 if(account.id == userId){
+                    console.log(req.body.update)
                     if(!update.description && !req.body.delete && !update.firstname && !update.lastname){
                         res.status(400).json({message : "pas de description"})
                     }else{

@@ -157,10 +157,17 @@
 }
 
 
+@media screen and (max-width: 1340px) {
+
+    .container_div_dangereuse{
+        height: 60%;
+    }
+}
+
 @media screen and (max-width: 1270px) {
 
     .container_div_dangereuse{
-        height: 38%;
+        height: 48%;
     }
     .trixe_profile{
         flex-direction: column;

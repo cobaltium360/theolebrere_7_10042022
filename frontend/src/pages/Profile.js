@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { validPrenom, validNom } from '../component/regex.js';
 
 
+
 function Profile() {
     const [dataAPI, setData] = React.useState([]);
     const [descriptionFront, setDescription] = React.useState("");
@@ -26,10 +27,12 @@ function Profile() {
     const navigate = useNavigate();
     const [redirect, setRedirect] = React.useState(false)
     const userId = localStorage.getItem('userId');
-    
+    const token = localStorage.getItem('token')
     useEffect(() => {
 
-        
+        if(!token){
+            navigate("/login")
+        }
 
         instance.get(`/user/${userId}`).then(res => {
             setData(res.data)
@@ -175,7 +178,7 @@ function Profile() {
         instance.delete(`/user/${userId}/1`)
             .then(res => { 
                 setDesac(true) 
-                const softSucces = "Compte bien désactivé !"
+                const softSucces = "Compte désactivé !"
                 notifySucces(softSucces)
             })
             .catch(err => {

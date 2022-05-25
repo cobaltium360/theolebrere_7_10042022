@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { instance } from '../axios'
+import jwt_decode from 'jwt-decode'
 import jwt from 'jwt-decode'
 import { useRef } from "react";
 import {  faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -14,7 +15,6 @@ import {  faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import {useNavigate} from "react-router"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 
 function Forum(){
     const [ username, setUsername ] = React.useState("");
@@ -25,9 +25,9 @@ function Forum(){
     const [ textepost, setTextePost ] = React.useState("");
     const [ newpost, setNewpost ] = React.useState("");
     const token = localStorage.getItem('token')
-    const check = jwt(token)
+    
+    
     const ref = useRef();
-
     const editPost = (index) => {
         const newposts = [...posts];
         newposts[index].edit = true;;
@@ -41,13 +41,13 @@ function Forum(){
     }
     const navigate = useNavigate();
     useEffect(() => {
-        setUsername(localStorage.getItem("username"));
-        instance.get(`/post`).then(res => setPosts(res.data));
-
-        const token = localStorage.getItem('token')
         
         if(!token){
-        navigate('/login')}
+            navigate("/login")
+        }
+        setUsername(localStorage.getItem("username"));
+        instance.get(`/post`).then(res => setPosts(res.data));
+        
       }, []);
 
     const onImageChange = (event) => {
@@ -93,7 +93,7 @@ function Forum(){
                     })
                     .catch(err => {
                         console.log(err)
-                        const errPost = "Impossible de posté le post !"
+                        const errPost = "Impossible de publié le post !"
                         notifyerr(errPost)
                     })
                 setNewpost("");
@@ -110,7 +110,7 @@ function Forum(){
                         })
                         .catch(err => {
                             console.log(err)
-                            const errPost = "Impossible de posté le post !"
+                            const errPost = "Impossible de publié le post !"
                             notifyerr(errPost)
                         })
                     setNewpost("");
@@ -329,53 +329,61 @@ function Forum(){
 
 
     function OptionAdminPost(props){
-
-        if(check.roleId === 2 || check.roleId === 3){
-            const softdelete = props.softdelete;
-            const idpost = props.idpost;
-            return (
-                <div className="container_admin_forum">
-                    <p className="p_admin_forum">{softdelete ? (<span className="admin_desac">&nbsp;Inactif</span>): (<span className="admin_ac">&nbsp;Actif</span>)}</p>
-                    <div className='options_admin_forum'>
-                                    <button onClick={() => handleSupressionPost(idpost)} className='admin_btn_delete'>
-                                        delete
-                                    </button>
-
-                                    {softdelete ? (<button onClick={() => handleRestorePost(idpost)} className='admin_btn_restore'>
-                                        restore
-                                    </button>) : (<button onClick={() => handleSoftDeletePost(idpost)} className='admin_btn_softdelete'>
-                                        soft-delete
-                                    </button>)}
+        if(token) {
+            const check = jwt(token)
+            if(check.roleId === 2 || check.roleId === 3){
+                
+                const softdelete = props.softdelete;
+                const idpost = props.idpost;
+                return (
+                    <div className="container_admin_forum">
+                        <p className="p_admin_forum">{softdelete ? (<span className="admin_desac">&nbsp;Inactif</span>): (<span className="admin_ac">&nbsp;Actif</span>)}</p>
+                        <div className='options_admin_forum'>
+                                        <button onClick={() => handleSupressionPost(idpost)} className='admin_btn_delete'>
+                                            delete
+                                        </button>
+    
+                                        {softdelete ? (<button onClick={() => handleRestorePost(idpost)} className='admin_btn_restore'>
+                                            restore
+                                        </button>) : (<button onClick={() => handleSoftDeletePost(idpost)} className='admin_btn_softdelete'>
+                                            soft-delete
+                                        </button>)}
+                        </div>
                     </div>
-                </div>
-            )
+                )
+            }
         }
+
+        
     }
     function OptionAdminComment(props){
-
-        if(check.roleId === 2 || check.roleId === 3){
-            const softdelete = props.softdelete;
-            const idcomment = props.idcomment;
-            return (
-                <div className="container_admin_forum_comment">
-                    <p>{softdelete ? (<span className="admin_desac">&nbsp;Inactif</span>): (<span className="admin_ac">&nbsp;Actif</span>)}</p>
-                    <div className='options_admin_forum_comment'>
-                                    <button onClick={() => handleDeleteComment(idcomment)} className='admin_btn_delete_comment'>
-                                        delete
-                                    </button>
-
-                                    {softdelete ? (<button onClick={() => handleRestoreComment(idcomment)} className='admin_btn_restore_comment'>
-                                        restore
-                                    </button>) : (<button onClick={() => handleSoftDeleteComment(idcomment)} className='admin_btn_softdelete_comment'>
-                                        soft-delete
-                                    </button>)}
-
-                                    
-                                    
+        if(token){
+            const check = jwt(token)
+            if(check.roleId === 2 || check.roleId === 3){
+                const softdelete = props.softdelete;
+                const idcomment = props.idcomment;
+                return (
+                    <div className="container_admin_forum_comment">
+                        <p>{softdelete ? (<span className="admin_desac">&nbsp;Inactif</span>): (<span className="admin_ac">&nbsp;Actif</span>)}</p>
+                        <div className='options_admin_forum_comment'>
+                                        <button onClick={() => handleDeleteComment(idcomment)} className='admin_btn_delete_comment'>
+                                            delete
+                                        </button>
+                                       
+                                        {softdelete ? (<button onClick={() => handleRestoreComment(idcomment)} className='admin_btn_restore_comment'>
+                                            restore
+                                        </button>) : (<button onClick={() => handleSoftDeleteComment(idcomment)} className='admin_btn_softdelete_comment'>
+                                            soft-delete
+                                        </button>)}
+    
+                                        
+                                        
+                        </div>
                     </div>
-                </div>
-            )
+                )
+            }
         }
+        
     }
 
     function handleLike(a){
@@ -409,51 +417,57 @@ function Forum(){
         const index = props.index1
         const postid = props.postId
         const nombrelike = posts[index].likes.length - 1
-
-        if(posts[index].likes[0]){
-            for(let i = 0 ; i <= nombrelike; i++){
-                
-                if(posts[index].likes[i].userId === check.userId){
-                    return (
-                        <h2><FontAwesomeIcon onClick={() => handleUnlike(postid)} className="liked" icon={faThumbsUp}/></h2>
-                    )
+        if(token){
+            const check = jwt(token)
+            if(posts[index].likes[0]){
+                for(let i = 0 ; i <= nombrelike; i++){
+                    
+                    if(posts[index].likes[i].userId === check.userId){
+                        return (
+                            <h2><FontAwesomeIcon onClick={() => handleUnlike(postid)} className="liked" icon={faThumbsUp}/></h2>
+                        )
+                    }
+    
+                    if(i === nombrelike){
+                        return(
+                            <h2 onClick={() => handleLike(postid)}><FontAwesomeIcon  icon={faThumbsUp}/></h2>
+                        )
+                    }
                 }
-
-                if(i === nombrelike){
-                    return(
-                        <h2 onClick={() => handleLike(postid)}><FontAwesomeIcon  icon={faThumbsUp}/></h2>
-                    )
-                }
+            }else{
+                return(
+                    <h2 onClick={() => handleLike(postid)}><FontAwesomeIcon  icon={faThumbsUp}/></h2>
+                )
             }
-        }else{
-            return(
-                <h2 onClick={() => handleLike(postid)}><FontAwesomeIcon  icon={faThumbsUp}/></h2>
-            )
         }
+        
     }
 
     function DislikedPost(props){
         const index = props.index1
         const postid = props.postId
         const nombredislike = posts[index].dislikes.length - 1
-        if(posts[index].dislikes[0]){
-            for(let i =0 ; i <= nombredislike; i++){
-            
-                if(posts[index].dislikes[i].userId === check.userId){
-                    return (
-                        <h2><FontAwesomeIcon onClick={() => handleUndislike(postid)} className="disliked" icon={faThumbsDown}/></h2>
-                    )
+        if(token){
+            const check = jwt(token)
+            if(posts[index].dislikes[0]){
+                for(let i =0 ; i <= nombredislike; i++){
+                
+                    if(posts[index].dislikes[i].userId === check.userId){
+                        return (
+                            <h2><FontAwesomeIcon onClick={() => handleUndislike(postid)} className="disliked" icon={faThumbsDown}/></h2>
+                        )
+                    }
+                    if(i === nombredislike){
+                        return (
+                            <h2 onClick={() => handleDislike(postid)}><FontAwesomeIcon icon={faThumbsDown}/></h2>
+                        )
+                    }
                 }
-                if(i === nombredislike){
-                    return (
-                        <h2 onClick={() => handleDislike(postid)}><FontAwesomeIcon icon={faThumbsDown}/></h2>
-                    )
-                }
+            }else{
+                return(
+                    <h2 onClick={() => handleDislike(postid)}><FontAwesomeIcon icon={faThumbsDown}/></h2>
+                )
             }
-        }else{
-            return(
-                <h2 onClick={() => handleDislike(postid)}><FontAwesomeIcon icon={faThumbsDown}/></h2>
-            )
         }
     }
 
@@ -473,7 +487,7 @@ function Forum(){
                 <div className="container_create_post">
                     <div className="contour">
                         <h2 className="titre_forum_newpost">{username} partagez quelque chose !</h2>
-                        <textarea type="text" className="textarea_forum" onChange={handleNewPostChange} value={newpost}/>
+                        <textarea maxlength="1000" type="text" className="textarea_forum" onChange={handleNewPostChange} value={newpost}/>
                         <div className="container_input_submit">
                             <label className="label_upload" for="file_forum"><FontAwesomeIcon icon={faArrowUpFromBracket}/></label>
                             <input type="file" id="file_forum" className="inputfileforum" name="image" ref={ref} onChange={onImageChange} />
@@ -507,7 +521,7 @@ function Forum(){
                         <div className="input_change_post">
                         {post.imageUrl ? <img className="image_du_forum" src={post.imageUrl} alt=""/> : null}
                         
-                        {post.edit ? (<div className="container_input_edit"><input type="text" className="input_edit_post" onChange={handleChangePost} defaultValue={post.text}/><button className="btn_edit_post" onClick={() => handleModifyPost(post.id)}>Modifier</button></div>) : (<p className="p_margin">{post.text}</p>)}
+                        {post.edit ? (<div className="container_input_edit"><input type="text" maxlength="1000" className="input_edit_post" onChange={handleChangePost} defaultValue={post.text}/><button className="btn_edit_post" onClick={() => handleModifyPost(post.id)}>Modifier</button></div>) : (<p className="p_margin">{post.text}</p>)}
                         </div>
                             {post.comments.map((comment, index2)=>(
                                 <li className="li_post">
@@ -522,7 +536,7 @@ function Forum(){
                                     <br/>
                                     
                                         
-                                        {comment.edit ? (<div><input type="text" className="input_edit_comment" onChange={handleModifyComment} defaultValue={comment.text}/><button className="btn_edit_comment" onClick={() => handleEditCommentaire(comment.id)}>Modifier</button></div>) : (<p className="input_change_comment">{comment.text}</p>)}
+                                        {comment.edit ? (<div><input type="text" maxlength="500" className="input_edit_comment" onChange={handleModifyComment} defaultValue={comment.text}/><button className="btn_edit_comment" onClick={() => handleEditCommentaire(comment.id)}>Modifier</button></div>) : (<p className="input_change_comment">{comment.text}</p>)}
                                         
                                                  
                                     
@@ -531,7 +545,7 @@ function Forum(){
                             
                             ))} 
                         <div className="input_commentaire">
-                            <input id={post.id} className="input_forum_commentaire" value={commentaire[post.id]} onChange={handleChangeComment} type="text"/><button type="submit" className="btn_forum_commentaire" onClick={() => handleSubmitComment(post.id, index)}>Post</button>
+                            <input id={post.id} maxlength="500" className="input_forum_commentaire" value={commentaire[post.id]} onChange={handleChangeComment} type="text"/><button type="submit" className="btn_forum_commentaire" onClick={() => handleSubmitComment(post.id, index)}>Post</button>
                         </div>
                         <div className="container_like_dislike">
                             <div className="container_like">

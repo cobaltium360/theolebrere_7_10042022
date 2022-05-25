@@ -14,10 +14,13 @@ function Profileid(){
     const [erreur, setErreur ] = React.useState(false)
     const [posts, setPosts ] = React.useState(false)
     const [redirect, setRedirect] = React.useState(false)
-
+    const token = localStorage.getItem('token')
     useEffect(() => {
         setRedirect(false)
         const userId = localStorage.getItem('userId');
+        if(!token){
+            navigate("/login")
+        }
         if(userId === params.id){
             navigate('/profile')
         }else{

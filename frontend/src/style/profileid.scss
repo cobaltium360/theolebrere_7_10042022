@@ -15,6 +15,7 @@
     display: flex;
     justify-content: center;
     
+    
 }
 .container_displayuser_img_pseudo_description{
     display: flex;
@@ -26,6 +27,7 @@
     margin-top: 25px;
     padding: 25px;
     width: 40%;
+    min-width: 200px;
 }
 
 
@@ -99,4 +101,25 @@
 
 .p_description_profileid{
     margin-top: 0;
+}
+
+@media screen and (max-width: 500px) {
+    .container_post_profileid{
+        width: 80%;
+        transition: .3s;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .container_post_profileid{
+        width: 90%;
+        transition: .3s;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .container_post_profileid{
+        width: 100%;
+        transition: .3s;
+    }
 }

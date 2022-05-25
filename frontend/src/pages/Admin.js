@@ -14,12 +14,17 @@ function Admin(){
     const [ admin, setAdmin ] = React.useState(false)
 
     useEffect(() => {
-        const check = jwt(token)
-        if(check.roleId === 2 || check.roleId === 3){
-            setAdmin(true)
+        if(!token){
+            navigate("/login")
         }else{
-            navigate('/forum')
+            const check = jwt(token)
+            if(check.roleId === 2 || check.roleId === 3){
+                setAdmin(true)
+            }else{
+                navigate('/forum')
+            }
         }
+        
 
         
 

@@ -5,14 +5,22 @@ import {instance } from '../axios'
 import { validEmail, validPassword } from '../component/regex.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useEffect} from 'react';
 
 
 function Login(){
     const navigate = useNavigate();
+    const token = localStorage.getItem("token")
     const [formValue, setformValue] = React.useState({
         email: '',
         password: ''
       });
+
+      useEffect(() => {
+        if(token){
+            navigate("/forum")
+        }
+    }, []);
 
     const handleChange = (event) => {
         setformValue({

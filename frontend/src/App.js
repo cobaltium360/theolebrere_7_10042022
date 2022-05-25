@@ -9,20 +9,10 @@ import Profileid from './pages/Profileid';
 import React, { useEffect } from 'react';
 import {useNavigate} from "react-router"
 import Admin from './pages/Admin'
+import jwt from 'jwt-decode'
 
 function App() {
   
-  // const navigate = useNavigate();
-  
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   if(!token){
-  //     navigate('/login')
-  //   }
-    
-  // }, []);
-
-
 
   return (
     
@@ -34,7 +24,6 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/profile/:id" element={<Profileid/>}/>
         <Route path="/admin" element={<Admin/>}/>
-        <Route path="/*" element={<Forum/>}/>
       </Routes>
     
   );
