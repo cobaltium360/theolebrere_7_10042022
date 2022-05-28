@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { instance } from '../axios'
-import jwt_decode from 'jwt-decode'
 import jwt from 'jwt-decode'
 import { useRef } from "react";
 import {  faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -46,7 +45,12 @@ function Forum(){
             navigate("/login")
         }
         setUsername(localStorage.getItem("username"));
-        instance.get(`/post`).then(res => setPosts(res.data));
+        instance.get(`/post`)
+            .then(res => setPosts(res.data))
+            .catch(err => {
+                localStorage.clear();
+                navigate('/login')
+            })
         
       }, []);
 
@@ -487,9 +491,9 @@ function Forum(){
                 <div className="container_create_post">
                     <div className="contour">
                         <h2 className="titre_forum_newpost">{username} partagez quelque chose !</h2>
-                        <textarea maxlength="1000" type="text" className="textarea_forum" onChange={handleNewPostChange} value={newpost}/>
+                        <textarea maxLength="1000" type="text" className="textarea_forum" onChange={handleNewPostChange} value={newpost}/>
                         <div className="container_input_submit">
-                            <label className="label_upload" for="file_forum"><FontAwesomeIcon icon={faArrowUpFromBracket}/></label>
+                            <label className="label_upload" htmlFor="file_forum"><FontAwesomeIcon icon={faArrowUpFromBracket}/></label>
                             <input type="file" id="file_forum" className="inputfileforum" name="image" ref={ref} onChange={onImageChange} />
                             <button type="submit" className="btn_newpost_forum" onClick={postSubmit} >Post</button>
                         </div>
@@ -501,9 +505,9 @@ function Forum(){
                 <div className="post_forum">
                     <h2 className="title_post">Fil d'actualités</h2>
                     {posts.map((post, index) => (
-                        <ul className="ul_post" >
+                        <ul key={index} className="ul_post" >
                             <OptionAdminPost softdelete={post.deletedAt} idpost={post.id}/>
-                        <div className="container_post_pseudo_poubelle">
+                        <div key={index} className="container_post_pseudo_poubelle">
                             <NavLink exact="true" to={{pathname:"/profile/" + post.userId,}} className="nav_link_forum">
                             <div className="container_imgprofile_forum_navlink">
                                 <div className="container_imgprofile_forum">
@@ -521,7 +525,7 @@ function Forum(){
                         <div className="input_change_post">
                         {post.imageUrl ? <img className="image_du_forum" src={post.imageUrl} alt=""/> : null}
                         
-                        {post.edit ? (<div className="container_input_edit"><input type="text" maxlength="1000" className="input_edit_post" onChange={handleChangePost} defaultValue={post.text}/><button className="btn_edit_post" onClick={() => handleModifyPost(post.id)}>Modifier</button></div>) : (<p className="p_margin">{post.text}</p>)}
+                        {post.edit ? (<div className="container_input_edit"><input type="text" maxLength="1000" className="input_edit_post" onChange={handleChangePost} defaultValue={post.text}/><button className="btn_edit_post" onClick={() => handleModifyPost(post.id)}>Modifier</button></div>) : (<p className="p_margin">{post.text}</p>)}
                         </div>
                             {post.comments.map((comment, index2)=>(
                                 <li className="li_post">
@@ -536,7 +540,7 @@ function Forum(){
                                     <br/>
                                     
                                         
-                                        {comment.edit ? (<div><input type="text" maxlength="500" className="input_edit_comment" onChange={handleModifyComment} defaultValue={comment.text}/><button className="btn_edit_comment" onClick={() => handleEditCommentaire(comment.id)}>Modifier</button></div>) : (<p className="input_change_comment">{comment.text}</p>)}
+                                        {comment.edit ? (<div><input type="text" maxLength="500" className="input_edit_comment" onChange={handleModifyComment} defaultValue={comment.text}/><button className="btn_edit_comment" onClick={() => handleEditCommentaire(comment.id)}>Modifier</button></div>) : (<p className="input_change_comment">{comment.text}</p>)}
                                         
                                                  
                                     
@@ -545,7 +549,7 @@ function Forum(){
                             
                             ))} 
                         <div className="input_commentaire">
-                            <input id={post.id} maxlength="500" className="input_forum_commentaire" value={commentaire[post.id]} onChange={handleChangeComment} type="text"/><button type="submit" className="btn_forum_commentaire" onClick={() => handleSubmitComment(post.id, index)}>Post</button>
+                            <input id={post.id} maxLength="500" className="input_forum_commentaire" value={commentaire[post.id]} onChange={handleChangeComment} type="text"/><button type="submit" className="btn_forum_commentaire" onClick={() => handleSubmitComment(post.id, index)}>Post</button>
                         </div>
                         <div className="container_like_dislike">
                             <div className="container_like">

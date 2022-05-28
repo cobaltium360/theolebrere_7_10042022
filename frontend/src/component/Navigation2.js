@@ -39,14 +39,14 @@ function Navigation2(){
             <div className='toggle_true'>
                 <h2 className='responsive_navbar_cross' onClick={displayToggle}>✖</h2>
                 <div className="container_log_reg_toggle">
-                    <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/forum">
+                    <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/">
                         Forum
                     </NavLink>
                     <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/profile">
                         Profile
                     </NavLink>
                     {admin ? <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/admin" >Admin</NavLink>: null}
-                    <NavLink className={(nav) => (nav.isActive ? "" : "inactive")} exact="true" to="/" onClick={logout}>
+                    <NavLink className={(nav) => (nav.isActive ? "" : "inactive")} exact="true" to="/login" onClick={logout}>
                         Logout
                     </NavLink>
                     
@@ -64,14 +64,14 @@ function Navigation2(){
                 <h2 className='responsive_navbar' onClick={displayToggle}>☰</h2>
                 { toggle ? <ToggleTrue/> : null}
                 <div className="container_log_reg">
-                    <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/forum">
+                    <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/">
                         Forum
                     </NavLink>
                     <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/profile">
                         Profile
                     </NavLink>
                     {admin ? <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/admin" >Admin</NavLink>: null}
-                    <NavLink className={(nav) => (nav.isActive ? "" : "inactive")} exact="true" to="/" onClick={logout}>
+                    <NavLink className={(nav) => (nav.isActive ? "" : "inactive")} exact="true" to="/login" onClick={logout}>
                         Logout
                     </NavLink>
                     

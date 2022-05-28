@@ -20,9 +20,6 @@ function Navigation1(){
             <div className='toggle_true'>
                 <h2 className='responsive_navbar_cross' onClick={displayToggle}>✖</h2>
                 <div className="container_log_reg_toggle">
-                <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/">
-                        Acceuil
-                    </NavLink>
                     <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/register">
                         Register
                     </NavLink>
@@ -42,9 +39,6 @@ function Navigation1(){
                 <h2 className='responsive_navbar' onClick={displayToggle}>☰</h2>
                 { toggle ? <ToggleTrue/> : null}
                 <div className="container_log_reg">
-                    <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/">
-                        Acceuil
-                    </NavLink>
                     <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/register">
                         Register
                     </NavLink>

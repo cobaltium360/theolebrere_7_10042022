@@ -62,7 +62,7 @@ function Register(){
                     <h2 className="titre_log_reg">Inscrivez-vous</h2>
                     <div className="container_input_register">
                         <div className="container_input_label">
-                            <label className="label_login" for="email">Email :</label>
+                            <label className="label_login" htmlFor="email">Email :</label>
                             <input
                                 type="email"
                                 name="email"
@@ -74,7 +74,7 @@ function Register(){
                         </div>
                         
                         <div className="container_input_label">
-                            <label className="label_login" for="username">Username :</label>
+                            <label className="label_login" htmlFor="username">Username :</label>
                             <input
                                 type="username"
                                 name="username"
@@ -85,7 +85,7 @@ function Register(){
                             />
                         </div>
                         <div className="container_input_label">
-                            <label className="label_login" for="firstname">Firstname :</label>
+                            <label className="label_login" htmlFor="firstname">Firstname :</label>
                             <input
                                 type="firstname"
                                 name="firstname"
@@ -96,7 +96,7 @@ function Register(){
                             />
                         </div>
                         <div className="container_input_label">
-                            <label className="label_login" for="lastname">Lastname :</label>
+                            <label className="label_login" htmlFor="lastname">Lastname :</label>
                             <input
                                 type="lastname"
                                 name="lastname"
@@ -107,7 +107,7 @@ function Register(){
                             />
                         </div>
                         <div className="container_input_label">
-                            <label className="label_login" for="password">Password :</label>
+                            <label className="label_login" htmlFor="password">Password :</label>
                             <input
                                 type="password"
                                 name="password"

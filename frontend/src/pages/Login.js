@@ -18,7 +18,7 @@ function Login(){
 
       useEffect(() => {
         if(token){
-            navigate("/forum")
+            navigate("/")
         }
     }, []);
 
@@ -43,7 +43,7 @@ function Login(){
                     localStorage.setItem('token', res.data.token);
                     localStorage.setItem('userId', res.data.userId);
                     localStorage.setItem('username', res.data.username);
-                    navigate('/forum')
+                    navigate('/')
                 })
                 .catch((err) => {
                     if(err.response.data.error == "Mot de passe incorrect !"){
@@ -74,7 +74,7 @@ function Login(){
                     
                         <div className="container_input_login">
                             <div className="container_input_label">
-                                <label className="label_login" for="email">Email :</label>
+                                <label className="label_login" htmlFor="email">Email :</label>
                                 <input
                                     type="email"
                                     name="email"
@@ -85,7 +85,7 @@ function Login(){
                                 />
                             </div>
                             <div className="container_input_label">
-                            <label className="label_login" for="password">Password :</label>
+                            <label className="label_login" htmlFor="password">Password :</label>
                                 <input
                                     type="password"
                                     name="password"

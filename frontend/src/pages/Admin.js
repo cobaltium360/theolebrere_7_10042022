@@ -31,8 +31,6 @@ function Admin(){
         instance.get('/user')
         .then(res => setUsers(res.data))
         .catch(err => console.log(err))
-
-        console.log(users)
     }, []);
 
     function notifyerr(a){
@@ -167,7 +165,7 @@ function Admin(){
             <div className='container_listeuser_admin'>
                 <h2 className='liste_user_admin'>Liste des users :</h2>
                 {users.map((user) => (
-                    <ul className={user.roleId > 1 ? "ul_admin_modo_admin": "ul_admin"} >
+                    <ul key={user.id} className={user.roleId > 1 ? "ul_admin_modo_admin": "ul_admin"} >
                         <Status role={user.roleId} />
                         <h2 className='view_profile_admin' onClick={() => redirect(user.id)}>View Profile</h2>
                         <div className='container_admin_user'>

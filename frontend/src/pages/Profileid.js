@@ -75,7 +75,7 @@ function Profileid(){
                         <h2 className="postedeuserprofileid">Posts de l'utilisateur :</h2>
                         {data.posts[0] ? data.posts.map((post)=>(
                     
-                            <ul className="ul_post">
+                            <ul key={post.id} className="ul_post">
                                 <div className="container_post_pseudo_poubelle_profileid">
                                     <h2 className="pseudo_author_post_profileid">{post.author}</h2>
                                 </div>

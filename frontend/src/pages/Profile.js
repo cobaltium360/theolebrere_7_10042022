@@ -15,7 +15,8 @@ import { validPrenom, validNom } from '../component/regex.js';
 function Profile() {
     const [dataAPI, setData] = React.useState([]);
     const [descriptionFront, setDescription] = React.useState("");
-
+    const [emailFront, setEmail] = React.useState("")
+    const [usernameFront, setUsername] = React.useState("")
     const [ firstnameFront, setFirstnameFront ] = React.useState("");
 
     const [ lastnameFront , setLastnameFront ] = React.useState("");
@@ -35,12 +36,18 @@ function Profile() {
         }
 
         instance.get(`/user/${userId}`).then(res => {
-            setData(res.data)
-            if (res.data.deletedAt) setDesac(true)
-            if(res.data.posts[0]){
-                setPosts(true)
-            }
-        }).catch(err => console.log(err))
+                setData(res.data);
+                if (res.data.deletedAt) setDesac(true)
+                if(res.data.posts[0]){
+                    setPosts(true)
+                }
+                setFirstnameFront(res.data.firstname);
+                setLastnameFront(res.data.lastname);
+                setDescription(res.data.description);
+                setEmail(res.data.email);
+                setUsername(res.data.username);
+            })
+            .catch(err => console.log(err))
     }, []);
 
     const handleChange = (event) => {
@@ -305,7 +312,7 @@ function Profile() {
                         (<ReplaceImg usernamereplace={dataAPI.username}/>)}
                         <div>
                             <h2>Changez votre photo de profil :</h2>
-                            <label for="file_profile" className="label_upload_profile" ><FontAwesomeIcon className="logo_upload_profile" icon={faArrowUpFromBracket}/></label>
+                            <label htmlFor="file_profile" className="label_upload_profile" ><FontAwesomeIcon className="logo_upload_profile" icon={faArrowUpFromBracket}/></label>
                             <input type="file" id="file_profile" className="inputfileforum" name="image" onChange={onImageChange} />
                         </div>
                         <div className="trixe_profile">
@@ -314,7 +321,7 @@ function Profile() {
                                 <input
                                     disabled={true}
                                     name="username"
-                                    value={dataAPI.username}
+                                    value={usernameFront}
                                     className="input_disable"
                                 />
                             </div>
@@ -323,7 +330,7 @@ function Profile() {
                                 <input
                                     disabled={true}
                                     name="email"
-                                    value={dataAPI.email}
+                                    value={emailFront}
                                     className="input_disable"
                                 />
                             </div>
@@ -334,7 +341,7 @@ function Profile() {
                                 <input
                                     className="input_enable_profile"
                                     name="firstname"
-                                    defaultValue={dataAPI.firstname}
+                                    value={firstnameFront}
                                     onChange={handleChangeFirstname}
                                 />
                             </div>
@@ -343,7 +350,7 @@ function Profile() {
                                 <input
                                     className="input_enable_profile"
                                     name="lastname"
-                                    defaultValue={dataAPI.lastname}
+                                    value={lastnameFront}
                                     onChange={handleChangeLastname}
                                 />
                             </div>
@@ -354,10 +361,10 @@ function Profile() {
                             <input
                                 type="description"
                                 name="description"
-                                maxlength="200"
+                                maxLength="200"
                                 className="input_enable_profile"
                                 placeholder="enter a description"
-                                defaultValue={dataAPI.description}
+                                value={descriptionFront}
                                 onChange={handleChange}
                             />
                         </div>
@@ -381,7 +388,7 @@ function Profile() {
                         <h2 className="postedeuserprofileid">Vos Posts :</h2>
                     {posts ? dataAPI.posts.map((post)=>(
                     
-                            <ul className="ul_post">
+                            <ul key={post.id} className="ul_post">
                                 <div className="container_post_pseudo_poubelle_profile">
                                     <h2 className="pseudo_author_post_profileid">{post.author}</h2><br/>
                                     <p onClick={() => handleSupressionPost(post.id)}><IsAuthorPost idAuthorPost={post.userId}/></p>
