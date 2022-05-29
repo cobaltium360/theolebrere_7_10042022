@@ -490,8 +490,9 @@ function Forum(){
             <ToastContainer position="bottom-right"/>
                 <div className="container_create_post">
                     <div className="contour">
-                        <h2 className="titre_forum_newpost">{username} partagez quelque chose !</h2>
-                        <textarea maxLength="1000" type="text" className="textarea_forum" onChange={handleNewPostChange} value={newpost}/>
+                        <h2 className="titre_forum_newpost">{username}<label htmlFor="textarea_post"> partagez quelque chose !</label></h2>
+                        
+                        <textarea maxLength="1000" type="text" id="textarea_post" className="textarea_forum" onChange={handleNewPostChange} value={newpost}/>
                         <div className="container_input_submit">
                             <label className="label_upload" htmlFor="file_forum"><FontAwesomeIcon icon={faArrowUpFromBracket}/></label>
                             <input type="file" id="file_forum" className="inputfileforum" name="image" ref={ref} onChange={onImageChange} />
@@ -511,7 +512,7 @@ function Forum(){
                             <NavLink exact="true" to={{pathname:"/profile/" + post.userId,}} className="nav_link_forum">
                             <div className="container_imgprofile_forum_navlink">
                                 <div className="container_imgprofile_forum">
-                                    {post.authorImg ? <img className="img_profile_forum_post" src={post.authorImg}/> : <ReplaceImgForum pseudo={post.author}/>}
+                                    {post.authorImg ? <img className="img_profile_forum_post" src={post.authorImg} alt="photo de profile de l'autheur du post" /> : <ReplaceImgForum pseudo={post.author}/>}
                                 </div>
                             <h2 className="titre_log_reg_forum">{post.author}</h2><br/>
                             </div>
@@ -548,8 +549,12 @@ function Forum(){
                                 </li>
                             
                             ))} 
+                        
                         <div className="input_commentaire">
-                            <input id={post.id} maxLength="500" className="input_forum_commentaire" value={commentaire[post.id]} onChange={handleChangeComment} type="text"/><button type="submit" className="btn_forum_commentaire" onClick={() => handleSubmitComment(post.id, index)}>Post</button>
+                            <label className="label_commentaire" htmlFor={post.id} >Poster un commentaire</label>
+                            <div className="input_commentaire_true">
+                                <input id={post.id} maxLength="500" className="input_forum_commentaire" value={commentaire[post.id]} onChange={handleChangeComment} type="text"/><button type="submit" className="btn_forum_commentaire" onClick={() => handleSubmitComment(post.id, index)}>Post</button>
+                            </div>
                         </div>
                         <div className="container_like_dislike">
                             <div className="container_like">

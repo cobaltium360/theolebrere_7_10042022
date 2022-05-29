@@ -65,11 +65,25 @@
 
 .input_commentaire{
     display: flex;
+    flex-direction: column;
+    align-items: center;
     border-top: solid 1px black;
     width: 100%;
     padding-top: 20px;
     justify-content: center;
 }
+
+.label_commentaire{
+    font-size: 20px;
+}
+.input_commentaire_true{
+    display: flex;
+    
+    width: 100%;
+    padding-top: 20px;
+    justify-content: center;
+}
+
 
 .label_upload{
     color: white;
@@ -84,6 +98,10 @@
     gap: 10px;
     margin-bottom: 20px;
     overflow-wrap: anywhere;
+}
+
+.hidden{
+    display: none;
 }
 
 .inputfileforum{

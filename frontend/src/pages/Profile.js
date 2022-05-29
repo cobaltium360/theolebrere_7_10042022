@@ -317,50 +317,56 @@ function Profile() {
                         </div>
                         <div className="trixe_profile">
                             <div>
-                                <p>username: </p>
+                                <p><label htmlFor="username_profile">Username :</label></p>
                                 <input
                                     disabled={true}
                                     name="username"
                                     value={usernameFront}
                                     className="input_disable"
+                                    id="username_profile"
                                 />
                             </div>
                             <div>
-                                <p>email: </p>
+                                <p><label htmlFor="email_profile">Email :</label></p>
                                 <input
                                     disabled={true}
                                     name="email"
                                     value={emailFront}
                                     className="input_disable"
+                                    id="email_profile"
                                 />
                             </div>
                         </div>
                         <div className="trixe_profile">
                             <div>
-                                <p>firstname: </p>
+                                <p><label htmlFor="prenom_profile">Prénom :</label></p>
                                 <input
                                     className="input_enable_profile"
                                     name="firstname"
                                     value={firstnameFront}
                                     onChange={handleChangeFirstname}
+                                    id="prenom_profile"
                                 />
                             </div>
                             <div>
-                                <p>lastname: </p>
+                                <p><label htmlFor="nom_profile">Nom :</label></p>
                                 <input
                                     className="input_enable_profile"
                                     name="lastname"
                                     value={lastnameFront}
                                     onChange={handleChangeLastname}
+                                    id="nom_profile"
                                 />
+
                             </div>
                         </div>
 
                         <div>
-                            <p>description: </p>
+                            <p><label htmlFor="description_profile">Description :</label></p>
                             <input
                                 type="description"
                                 name="description"
+                                id="description_profile"
                                 maxLength="200"
                                 className="input_enable_profile"
                                 placeholder="enter a description"
