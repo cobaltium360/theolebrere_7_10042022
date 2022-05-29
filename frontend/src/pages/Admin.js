@@ -180,9 +180,7 @@ function Admin(){
                                 </div>
                             </div>
                             <div className='container_option_admin'>
-                                <div className='etat_account_admin'>
-                                    <p>{user.deletedAt ? <span className='admin_desac'>désactiver</span>: <span className='admin_ac'>activer</span>}</p>
-                                </div>
+                                
                                 <div className='options_admin'>
                                     <button onClick={() => deleteUser(user.id)} className='admin_btn_delete'>
                                         delete

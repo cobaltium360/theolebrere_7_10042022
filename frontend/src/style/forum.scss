@@ -169,6 +169,7 @@
     color: black;
     cursor: pointer;
     font-size: 20px;
+    
     font-weight: bold;
     text-decoration: underline #ba4e55 3px;
 }
@@ -231,6 +232,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 10px;
 }
 
 .container_pen_trash{
@@ -297,7 +299,7 @@
 .container_admin_forum{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     
 }
 
@@ -309,8 +311,8 @@
 .container_admin_forum_comment{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    padding-bottom: 10px;
     
 }
 

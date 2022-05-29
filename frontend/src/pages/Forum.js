@@ -341,7 +341,7 @@ function Forum(){
                 const idpost = props.idpost;
                 return (
                     <div className="container_admin_forum">
-                        <p className="p_admin_forum">{softdelete ? (<span className="admin_desac">&nbsp;Inactif</span>): (<span className="admin_ac">&nbsp;Actif</span>)}</p>
+                        
                         <div className='options_admin_forum'>
                                         <button onClick={() => handleSupressionPost(idpost)} className='admin_btn_delete'>
                                             delete
@@ -368,7 +368,7 @@ function Forum(){
                 const idcomment = props.idcomment;
                 return (
                     <div className="container_admin_forum_comment">
-                        <p>{softdelete ? (<span className="admin_desac">&nbsp;Inactif</span>): (<span className="admin_ac">&nbsp;Actif</span>)}</p>
+                        
                         <div className='options_admin_forum_comment'>
                                         <button onClick={() => handleDeleteComment(idcomment)} className='admin_btn_delete_comment'>
                                             delete
@@ -538,10 +538,10 @@ function Forum(){
                                                 <p className="p_margin" onClick={() => handleDeleteComment(comment.id)}><IsAuthorCommentDelete idAuthorComment={comment.authorId} idducommentaire={comment.id}/></p> 
                                         </div>  
                                     </div>
-                                    <br/>
+                                    
                                     
                                         
-                                        {comment.edit ? (<div><input type="text" maxLength="500" className="input_edit_comment" onChange={handleModifyComment} defaultValue={comment.text}/><button className="btn_edit_comment" onClick={() => handleEditCommentaire(comment.id)}>Modifier</button></div>) : (<p className="input_change_comment">{comment.text}</p>)}
+                                    {comment.edit ? (<div><input type="text" maxLength="500" className="input_edit_comment" onChange={handleModifyComment} defaultValue={comment.text}/><button className="btn_edit_comment" onClick={() => handleEditCommentaire(comment.id)}>Modifier</button></div>) : (<p className="input_change_comment">{comment.text}</p>)}
                                         
                                                  
                                     
