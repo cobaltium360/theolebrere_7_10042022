@@ -19,7 +19,7 @@ function Forum(){
     const [ username, setUsername ] = React.useState("");
     const [ posts, setPosts ] = React.useState([]);
     const [ image, setImage ] = React.useState("");
-    const [ commentaire, setComment ] = React.useState([]);
+    const [ commentaire, setComment ] = React.useState("");
     const [ newcommentaire, setNewComment ] = React.useState("");
     const [ textepost, setTextePost ] = React.useState("");
     const [ newpost, setNewpost ] = React.useState("");
@@ -135,8 +135,8 @@ function Forum(){
         .then(res => {
             commentaire[a] = ""
             instance.get(`/post`)
-            .then(res => setPosts(res.data)
-            .catch(err => console.log(err)))
+            .then(res => setPosts(res.data))
+            .catch(err => console.log(err))
             const addcomment = "Commentaire posté !"
             notifySucces(addcomment)
         })
@@ -529,7 +529,7 @@ function Forum(){
                         {post.edit ? (<div className="container_input_edit"><input type="text" maxLength="1000" className="input_edit_post" onChange={handleChangePost} defaultValue={post.text}/><button className="btn_edit_post" onClick={() => handleModifyPost(post.id)}>Modifier</button></div>) : (<p className="p_margin">{post.text}</p>)}
                         </div>
                             {post.comments.map((comment, index2)=>(
-                                <li className="li_post">
+                                <li key={index2} className="li_post">
                                     <OptionAdminComment softdelete={comment.deletedAt} idcomment={comment.id}/>
                                     <div className="container_comment">
                                         <NavLink className="nav_link_forum2" exact="true" to={{pathname:"/profile/" + comment.authorId,}}>{comment.author}</NavLink>

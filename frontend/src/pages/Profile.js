@@ -13,7 +13,7 @@ import { validPrenom, validNom } from '../component/regex.js';
 
 
 function Profile() {
-    const [dataAPI, setData] = React.useState([]);
+    const [dataAPI, setData] = React.useState({firstname : "", lastname: "", username : "", email: "", description :""});
     const [descriptionFront, setDescription] = React.useState("");
     const [emailFront, setEmail] = React.useState("")
     const [usernameFront, setUsername] = React.useState("")
@@ -41,11 +41,7 @@ function Profile() {
                 if(res.data.posts[0]){
                     setPosts(true)
                 }
-                setFirstnameFront(res.data.firstname);
-                setLastnameFront(res.data.lastname);
-                setDescription(res.data.description);
-                setEmail(res.data.email);
-                setUsername(res.data.username);
+                
             })
             .catch(err => console.log(err))
     }, []);
@@ -133,7 +129,6 @@ function Profile() {
 
                 }else {
                     if ((!image && update.description) || (!image && update.firstname) || (!image && update.lastname)) {
-                        console.log("ok")
                         if((update.firstname && !validPrenom.test(update.firstname)) || (update.lastname && !validNom.test(update.lastname))){
                             const errRegex = "merci de remplir correctement les champs"
                             notifyerr(errRegex)
@@ -244,6 +239,7 @@ function Profile() {
 
     function ReplaceImg(){
         if(dataAPI.username){
+            
         const lettre = dataAPI.username.substr(0, 1).toUpperCase()
         return (
             <div className="container_replace_img">
@@ -268,7 +264,6 @@ function Profile() {
             <div className="fond_bleu_forum">
                 <ToastContainer position="bottom-right"/>
                 <div className="container_profile">
-
                     
                     <div className="container_infoprofile">
                         <div className="container_div_dangereuse">
@@ -321,7 +316,7 @@ function Profile() {
                                 <input
                                     disabled={true}
                                     name="username"
-                                    value={usernameFront}
+                                    value={dataAPI.username}
                                     className="input_disable"
                                     id="username_profile"
                                 />
@@ -331,7 +326,7 @@ function Profile() {
                                 <input
                                     disabled={true}
                                     name="email"
-                                    value={emailFront}
+                                    value={dataAPI.email}
                                     className="input_disable"
                                     id="email_profile"
                                 />
@@ -343,7 +338,7 @@ function Profile() {
                                 <input
                                     className="input_enable_profile"
                                     name="firstname"
-                                    value={firstnameFront}
+                                    defaultValue={dataAPI.firstname}
                                     onChange={handleChangeFirstname}
                                     id="prenom_profile"
                                 />
@@ -353,7 +348,7 @@ function Profile() {
                                 <input
                                     className="input_enable_profile"
                                     name="lastname"
-                                    value={lastnameFront}
+                                    defaultValue={dataAPI.lastname}
                                     onChange={handleChangeLastname}
                                     id="nom_profile"
                                 />
@@ -370,7 +365,7 @@ function Profile() {
                                 maxLength="200"
                                 className="input_enable_profile"
                                 placeholder="enter a description"
-                                value={descriptionFront}
+                                defaultValue={dataAPI.description}
                                 onChange={handleChange}
                             />
                         </div>
@@ -392,9 +387,9 @@ function Profile() {
                     
                     <div className="container_post_profile">
                         <h2 className="postedeuserprofileid">Vos Posts :</h2>
-                    {posts ? dataAPI.posts.map((post)=>(
+                    {posts ? dataAPI.posts.map((post ,index)=>(
                     
-                            <ul key={post.id} className="ul_post">
+                            <ul key={index} className="ul_post">
                                 <div className="container_post_pseudo_poubelle_profile">
                                     <h2 className="pseudo_author_post_profileid">{post.author}</h2><br/>
                                     <p onClick={() => handleSupressionPost(post.id)}><IsAuthorPost idAuthorPost={post.userId}/></p>
@@ -403,8 +398,8 @@ function Profile() {
                                     {post.imageUrl ? <img className="image_du_forum" src={post.imageUrl} alt=""/> : null}
                                     <p>{post.text}</p>
                                 </div>
-                                {post.comments.map((comment)=>(
-                                    <li className="li_post">
+                                {post.comments.map((comment, index2)=>(
+                                    <li key={index2} className="li_post">
                                         <h2 className="nav_link_forum" onClick={() => RedirectUser(comment.authorId)}>{comment.author}</h2>
                                         <p className="commentaire_post_profile">{comment.text}</p>
                                     </li>
