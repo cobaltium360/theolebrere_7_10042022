@@ -68,7 +68,7 @@ function Navigation2(){
                         Forum
                     </NavLink>
                     <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/profile">
-                        Profile
+                        Profil
                     </NavLink>
                     {admin ? <NavLink className={(nav) => (nav.isActive ? "active" : "inactive")} exact="true" to="/admin" >Admin</NavLink>: null}
                     <NavLink className={(nav) => (nav.isActive ? "" : "inactive")} exact="true" to="/login" onClick={logout}>

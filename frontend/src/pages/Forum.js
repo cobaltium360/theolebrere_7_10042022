@@ -19,7 +19,7 @@ function Forum(){
     const [ username, setUsername ] = React.useState("");
     const [ posts, setPosts ] = React.useState([]);
     const [ image, setImage ] = React.useState("");
-    const [ commentaire, setComment ] = React.useState("");
+    const [ commentaire, setComment ] = React.useState([]);
     const [ newcommentaire, setNewComment ] = React.useState("");
     const [ textepost, setTextePost ] = React.useState("");
     const [ newpost, setNewpost ] = React.useState("");
@@ -504,7 +504,7 @@ function Forum(){
                     </div>
                 </div>
                 <div className="post_forum">
-                    <h2 className="title_post">Fil d'actualités</h2>
+                    <h2 className="title_post">Fil d'actualitées</h2>
                     {posts.map((post, index) => (
                         <ul key={index} className="ul_post" >
                             <OptionAdminPost softdelete={post.deletedAt} idpost={post.id}/>
