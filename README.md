@@ -1,6 +1,6 @@
 ﻿# theolebrere_7_10042022
 dans le dossier backend :
-- créer un dossiers "images"
+- créer un dossier "images"
 - npm install
 - créer un ficher ".env" avec les variables "DB_PASS" pour le mot de passe de MySql et "JWTPRIV8" pour la clé privé du JsonWebToken
 
