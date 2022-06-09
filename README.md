@@ -3,6 +3,9 @@ dans le dossier backend :
 - créer un dossier "images"
 - npm install
 - créer un ficher ".env" avec les variables "DB_PASS" pour le mot de passe de MySql et "JWTPRIV8" pour la clé privé du JsonWebToken
+- si votre nom d'utilisateur de MySql n'est pas "root" il faut modifier le pseudo dans backend > models > index 
+- si votre base de donnée ne s'appele pas "groupomania" il faut mettre le bon nom de bdd dans backend > models > index
+- Lors de l'initialisation du projet pour passer Administrateur il faut directement changer le roleId du compte en question a 3 (avec une commande Sql)
 
 Dans le dossier Frontend : 
 - npm install
