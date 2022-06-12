@@ -10,3 +10,10 @@ dans le dossier backend :
 Dans le dossier Frontend : 
 - npm install
 - créer un fichier ".env" avec la varibale "PORT" pour changer le port par default
+
+Importation de la database :
+- via le terminal MySql : 
+    - CREATE DATABASE groupomania;
+- via le terminal :
+    - se mettre dans le dossier database du p7
+    - mysql -u root -p groupomania < bd.sql
