@@ -89,7 +89,7 @@ function Profileid(){
                                 ))}
                             </ul>
                             
-                        )).reverse(): <p className="p_profileid_aucun_post">aucun poste</p>}</div>
+                        )): <p className="p_profileid_aucun_post">aucun poste</p>}</div>
                     
                 </div>
             </div>

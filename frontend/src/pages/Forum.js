@@ -569,7 +569,7 @@ function Forum(){
                             
                         </div>
                         </ul>
-                    )).reverse()}
+                    ))}
                 </div>
             </div>
         </div>

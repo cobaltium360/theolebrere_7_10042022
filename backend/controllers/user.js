@@ -215,7 +215,7 @@ exports.getOneUser = (req, res, next) => {
     roleId = auth[1];
 
     async function oneUser(){
-        const user = await userModel.findByPk( req.params.id, {include : [{model : postModel,  include: [commentModel]}], paranoid:false});
+        const user = await userModel.findByPk( req.params.id, {include : [{model : postModel,  include: [commentModel]}], order: [[postModel, 'createdAt', 'DESC'], [postModel, commentModel, 'createdAt', 'DESC']] ,paranoid:false});
         
         if(user){
             const userAuthor = {

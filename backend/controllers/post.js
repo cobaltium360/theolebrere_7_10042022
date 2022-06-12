@@ -130,11 +130,11 @@ exports.getAllPost = (req, res, next) =>{
         roleId = auth[1];
         
         if(roleId == 2 || roleId == 3){
-            postModel.findAll({include : [{model : commentModel, paranoid:false}, {model: likeModel}, {model: dislikeModel}], paranoid:false})
+            postModel.findAll({include : [{model : commentModel, paranoid:false}, {model: likeModel}, {model: dislikeModel}],paranoid:false , order: [  ['createdAt', 'DESC'] , [commentModel, 'createdAt', 'DESC']]})
             .then((data) => res.send(data))
             .catch((error) => res.status(500).send(error))
         }else{
-            postModel.findAll({include: [{model :commentModel}, {model :likeModel}, {model : dislikeModel}]})
+            postModel.findAll({include: [{model :commentModel}, {model :likeModel}, {model : dislikeModel}] ,order: [  ['createdAt', 'DESC'] , [commentModel, 'createdAt', 'DESC']]})
             .then((data) => res.send(data))
             .catch((error) => res.status(500).send(error))
         }
