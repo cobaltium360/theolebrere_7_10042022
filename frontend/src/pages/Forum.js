@@ -444,7 +444,6 @@ function Forum(){
                 )
             }
         }
-        
     }
 
     function DislikedPost(props){
